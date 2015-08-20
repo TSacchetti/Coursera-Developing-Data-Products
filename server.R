@@ -14,8 +14,8 @@ shinyServer(function(input, output) {
             main=paste(input$Y, "per", input$X),
             ylab=input$Y,
             xlab=paste(input$X))
-    lines(lowess(data[,input$X],data[,input$Y]),col = "blue")
-    lines(predict.lm(lm(data[,input$Y]~data[,input$X], data = data),data[,input$X]),col = "red")
-    legend("topright",c(paste("Lowess approx"),paste("Linear Model From",input$X)),lty=c(1,1),col=c("blue","red"))
+    lines(lowess(data[,input$X],data[,input$Y],f = input$N),col = "blue")
+    lines(smooth.spline(data[,input$X],data[,input$Y]),col = "red")
+    legend("topright",c(paste("Lowess approx"),paste("Smooth Spline of ",input$X)),lty=c(1,1),col=c("blue","red"))
   })
 })

@@ -1,0 +1,39 @@
+London Car Safety Pitch
+========================================================
+author: Thomas Sacchetti
+date: 8/20/15
+
+Overview
+========================================================
+
+The app is designed to help students not only develop a better understanding
+ intuition of the following categories.
+
+- Relative approximations from the the Smooth Spline vs. the Lowess
+- General trends in information
+- The effects of changing the fit coefecient in the Lowess model
+
+Why this app
+========================================================
+This app allows students to gain an interactive experience but distinguishes itself because it is:
+
+- Interactive
+- Intuitive
+- Allows Students to gain insight in statistical modeling
+
+Example Plot
+========================================================
+
+```{r, echo=FALSE}
+data = Seatbelts
+X = "DriversKilled"
+Y = "drivers"
+N = .4
+    plot(data[,X],data[,Y],
+            main=paste(Y, "per", X),
+            ylab=Y,
+            xlab=paste(X))
+    lines(lowess(data[,X],data[,Y],f = N),col = "blue")
+    lines(smooth.spline(data[,X],data[,Y]),col = "red")
+    legend("topright",c(paste("Lowess approx"),paste("Smooth Spline of",X)),lty=c(1,1),col=c("blue","red"))
+```
